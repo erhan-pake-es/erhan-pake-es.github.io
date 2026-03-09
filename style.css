@@ -130,6 +130,7 @@ ul li{
     display: none;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     padding: 10px;
     font-size: clamp(2rem, 10vw, 8rem);
     line-height: 1.1;
@@ -137,6 +138,21 @@ ul li{
     word-break: break-word;
     background-color: whitesmoke;
     height: 50vh;
+}
+
+.word-image{
+    font-size: 8rem;
+    margin-bottom: 20px;
+}
+
+.word-text{
+    font-size: clamp(1.5rem, 6vw, 4rem);
+}
+
+.game-over{
+    font-size: 3rem;
+    color: #333;
+    text-align: center;
 }
 
 #game-buttons{

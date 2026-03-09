@@ -1,37 +1,37 @@
 const wordCategories = {
     daily1: [
-      "Boba Tea / 珍珠奶茶 (zhēnzhū nǎichá)",
-      "Airplane / 飛機 (fēi jī)",
-      "Mobile Phone / 手機 (shǒu jī)",
-      "Umbrella / 雨傘 (yǔ sǎn)",
-      "Keys / 鑰匙 (yào shi)",
-      "Water Bottle / 水壺 (shuǐ hú)",
-      "Toilet Paper / 衛生紙 (wèi shēng zhǐ)",
-      "Shoes / 鞋子 (xié zi)",
-      "Backpack / 背包 (bēi bāo)",
-      "Glasses / 眼鏡 (yǎn jìng)",
+      { word: "Boba Tea / 珍珠奶茶 (zhēnzhū nǎichá)", image: "🧋" },
+      { word: "Airplane / 飛機 (fēi jī)", image: "✈️" },
+      { word: "Mobile Phone / 手機 (shǒu jī)", image: "📱" },
+      { word: "Umbrella / 雨傘 (yǔ sǎn)", image: "☂️" },
+      { word: "Keys / 鑰匙 (yào shi)", image: "🔑" },
+      { word: "Water Bottle / 水壺 (shuǐ hú)", image: "💧" },
+      { word: "Toilet Paper / 衛生紙 (wèi shēng zhǐ)", image: "🧻" },
+      { word: "Shoes / 鞋子 (xié zi)", image: "👟" },
+      { word: "Backpack / 背包 (bēi bāo)", image: "🎒" },
+      { word: "Glasses / 眼鏡 (yǎn jìng)", image: "👓" },
     ],
 
     daily2: [
-      "Earphones / 耳機 (ěr jī)",
-      "Teapot / 茶壺 (chá hú)",
-      "Helmet / 安全帽 (ān quán mào)",
-      "Receipt / 發票 (fā piào)",
-      "Charger / 充電器 (chōng diàn qì)",
-      "Microwave / 微波爐 (wéi bō lú)",
-      "Toothbrush / 牙刷 (yá shuā)",
-      "Credit Card / 信用卡 (xìn yòng kǎ)",
+      { word: "Earphones / 耳機 (ěr jī)", image: "🎧" },
+      { word: "Teapot / 茶壺 (chá hú)", image: "🫖" },
+      { word: "Helmet / 安全帽 (ān quán mào)", image: "🪖" },
+      { word: "Receipt / 發票 (fā piào)", image: "🧾" },
+      { word: "Charger / 充電器 (chōng diàn qì)", image: "🔌" },
+      { word: "Microwave / 微波爐 (wéi bō lú)", image: "📟" },
+      { word: "Toothbrush / 牙刷 (yá shuā)", image: "🪥" },
+      { word: "Credit Card / 信用卡 (xìn yòng kǎ)", image: "💳" },
     ],
 
     daily3: [
-      "Power Bank / 行動電源 (xíng dòng diàn yuán)",
-      "Contact Lenses / 隱形眼鏡 (yǐn xíng yǎn jìng)",
-      "Extension Cord / 延長線 (yán cháng xiàn)",
-      "Electric Mosquito Swatter / 電蚊拍 (diàn wén pāi)",
-      "Nail Clippers / 指甲剪 (zhǐ jia jiǎn)",
-      "Sunscreen / 防曬乳 (fáng shài rǔ)",
-      "Vacuum Cleaner / 吸塵器 (xī chén qì)",
-      "Alarm Clock / 鬧鐘 (nào zhōng)",
+      { word: "Power Bank / 行動電源 (xíng dòng diàn yuán)", image: "🔋" },
+      { word: "Contact Lenses / 隱形眼鏡 (yǐn xíng yǎn jìng)", image: "👁️" },
+      { word: "Extension Cord / 延長線 (yán cháng xiàn)", image: "🔌" },
+      { word: "Electric Mosquito Swatter / 電蚊拍 (diàn wén pāi)", image: "🦟" },
+      { word: "Nail Clippers / 指甲剪 (zhǐ jia jiǎn)", image: "✂️" },
+      { word: "Sunscreen / 防曬乳 (fáng shài rǔ)", image: "🧴" },
+      { word: "Vacuum Cleaner / 吸塵器 (xī chén qì)", image: "🧹" },
+      { word: "Alarm Clock / 鬧鐘 (nào zhōng)", image: "⏰" },
     ],
 
     jobs: [
@@ -188,10 +188,11 @@ const wordCategories = {
       cTitle.textContent = category.toUpperCase();
       document.getElementById('start').style.display = 'none';
 
-      wordCategories[category].forEach(word => {
+      wordCategories[category].forEach(item => {
         let li = document.createElement('li');
         let button = document.createElement('button')
-        let newItem = document.createTextNode(word);
+        const displayWord = typeof item === 'string' ? item : item.word;
+        let newItem = document.createTextNode(displayWord);
 
 
         button.classList.add('close');
@@ -232,11 +233,19 @@ const wordCategories = {
 
   function setRandomWord(){
     if (currentCategory.length === 0){
-      word.textContent = "";
+      word.innerHTML = "";
       return;
     }
 
-    word.textContent = currentCategory[currentIndex];
+    const currentItem = currentCategory[currentIndex];
+    const displayWord = typeof currentItem === 'string' ? currentItem : currentItem.word;
+    const displayImage = typeof currentItem === 'object' && currentItem.image ? currentItem.image : null;
+    
+    if (displayImage) {
+      word.innerHTML = `<div class="word-image">${displayImage}</div><div class="word-text">${displayWord}</div>`;
+    } else {
+      word.innerHTML = displayWord;
+    }
     fitWordToCard();
   }
 
@@ -281,6 +290,7 @@ const wordCategories = {
 
   function checkEnd(){
     if (remainingWords == 0){
+        word.innerHTML = "<div class='game-over'>🎉 Game Complete! 🎉</div>";
         get.disabled = true;
         pass.disabled = true;
     } else return;
@@ -374,10 +384,11 @@ const wordCategories = {
     list.id = "custom-list"
     document.querySelector('#start').style.display = "flex"
 
-    wordCategories[currentCategoryKey].forEach(word => {
+    wordCategories[currentCategoryKey].forEach(item => {
       let li = document.createElement('li');
       let button = document.createElement('button')
-      let newItem = document.createTextNode(word);
+      const displayWord = typeof item === 'string' ? item : item.word;
+      let newItem = document.createTextNode(displayWord);
 
 
       button.classList.add('close');
@@ -426,7 +437,7 @@ const wordCategories = {
     setScore();
 
     if (remainingWords === 0){
-      word.textContent = "";
+      word.innerHTML = "<div class='game-over'>No words available! Add some words first.</div>";
       get.disabled = true;
       pass.disabled = true;
       return;
@@ -451,4 +462,3 @@ const wordCategories = {
       e.target.parentNode.remove()
     }
   })
-
