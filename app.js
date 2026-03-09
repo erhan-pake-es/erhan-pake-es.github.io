@@ -159,14 +159,14 @@ const wordCategories = {
     custom: [],
   }
 
-  let currentCategory;
+  let currentCategory = [];
+  let currentCategoryKey;
   let remainingWords;
   let currentIndex = 0;
   let score = 0;
   const pass = document.getElementById("pass");
   const get = document.getElementById("get");
   const reset = document.getElementById("reset");
-  const hide = document.getElementById("hide");
   const word = document.getElementById("word");
   const categories = document.getElementById("categories");
   const docu = document.documentElement;
@@ -183,7 +183,7 @@ const wordCategories = {
       let ul = document.createElement('ul');
       ul.id = `${category}-list`;
       customize.appendChild(ul);
-      currentCategory = category;
+      currentCategoryKey = category;
 
       customize.style.display = "flex";
       cTitle.textContent = category.toUpperCase();
@@ -214,7 +214,8 @@ const wordCategories = {
     const allCategories = categories.querySelectorAll(".category");
     allCategories.forEach(category => {
       category.addEventListener("click", () => {
-        currentCategory = wordCategories[category.id];
+        currentCategoryKey = category.id;
+        currentCategory = [...wordCategories[currentCategoryKey]];
         initializeGame();
       })
     })
@@ -231,9 +232,29 @@ const wordCategories = {
     //INSERT the currentWord in the word div
 
   function setRandomWord(){
-    word.textContent = currentCategory[currentIndex];
+    if (currentCategory.length === 0){
+      word.textContent = "";
+      return;
+    }
 
-    if (remainingWords == 0) word.textContent = "";
+    word.textContent = currentCategory[currentIndex];
+    fitWordToCard();
+  }
+
+  function fitWordToCard(){
+    if (!word.textContent.trim()) return;
+
+    let fontSize = Math.min(Math.floor(window.innerWidth * 0.12), 140);
+    const minFontSize = 50;
+
+    word.style.fontSize = `${fontSize}px`;
+    while (
+      (word.scrollWidth > word.clientWidth - 50 || word.scrollHeight > word.clientHeight - 50) &&
+      fontSize > minFontSize
+    ) {
+      fontSize -= 2;
+      word.style.fontSize = `${fontSize}px`;
+    }
   }
 
   // function countRemaining
@@ -329,30 +350,16 @@ const wordCategories = {
     score = 0;
     setScore();
 
-    if (remainingWords == 0){
-        window.location.reload();
-    } else return;
-  }
+    currentCategory = [...wordCategories[currentCategoryKey]];
+    countRemaining();
+    get.disabled = false;
+    pass.disabled = false;
 
-  // ADD an eventListener for the hide button
-    //IF the display of the word div is not none, set it to none
-      //SET the text to unhide
-      //CHANGE the color of the button
-    //ELSE set it to grid/flex
-      //SET the text to hide
-      //CHANGE the color of the button
-
-  hide.onclick = () => {
-    if (word.style.display !== 'none'){
-        word.style.display = "none";
-        hide.textContent = "UNHIDE";
-        hide.style.color = "white";
-        hide.style.backgroundColor = "darkgray";
+    if (remainingWords > 0){
+      currentIndex = getRandomNumber();
+      setRandomWord();
     } else {
-        word.style.display = "flex";
-        hide.textContent = "HIDE";
-        hide.style.color = "black";
-        hide.style.backgroundColor = "rgb(240, 240, 240)";
+      word.textContent = "";
     }
   }
 
@@ -363,12 +370,12 @@ const wordCategories = {
   custom.onclick = () => {
     customize.style.display = "flex";
     cTitle.textContent = custom.textContent;
-    currentCategory = "custom";
+    currentCategoryKey = "custom";
     const list = document.createElement("ul");
     list.id = "custom-list"
     document.querySelector('#start').style.display = "flex"
 
-    wordCategories[currentCategory].forEach(word => {
+    wordCategories[currentCategoryKey].forEach(word => {
       let li = document.createElement('li');
       let button = document.createElement('button')
       let newItem = document.createTextNode(word);
@@ -388,7 +395,7 @@ const wordCategories = {
   //ADD a click function for the customize enter button
 
   addBtn.onclick = () => {
-    addWord(currentCategory);
+    addWord(currentCategoryKey);
   }
 
   document.addEventListener("keydown", (e) => {
@@ -396,13 +403,14 @@ const wordCategories = {
   })
 
   document.getElementById('start').onclick = () =>{
-    currentCategory = wordCategories.custom;
+    currentCategoryKey = "custom";
+    currentCategory = [...wordCategories.custom];
     initializeGame();
   }
 
   document.getElementById('close-edit').onclick = (e) => {
     e.target.parentNode.style.display = "none";
-    document.getElementById(`${currentCategory}-list`).remove()
+    document.getElementById(`${currentCategoryKey}-list`).remove()
   }
 
   //function initializeGame
@@ -415,20 +423,32 @@ const wordCategories = {
     customize.style.display = 'none';
     word.style.display ='flex';
     score = 0;
-    currentIndex = getRandomNumber();
-    setRandomWord();
     countRemaining();
     setScore();
+
+    if (remainingWords === 0){
+      word.textContent = "";
+      get.disabled = true;
+      pass.disabled = true;
+      return;
+    }
+
+    get.disabled = false;
+    pass.disabled = false;
+    currentIndex = getRandomNumber();
+    setRandomWord();
   }
+
+  window.addEventListener('resize', fitWordToCard)
 
   window.addEventListener('load', setCategory)
 
   document.addEventListener('click', (e) => {
     if (e.target.classList.contains("close")){
-      let word = e.target.parentNode.innerText.match(/\w+[^x]/)[0]
-      let i = wordCategories[currentCategory].indexOf(word);
+      let wordToDelete = e.target.parentNode.firstChild.textContent.trim();
+      let i = wordCategories[currentCategoryKey].indexOf(wordToDelete);
 
-      wordCategories[currentCategory].splice(i, 1);
+      wordCategories[currentCategoryKey].splice(i, 1);
       e.target.parentNode.remove()
     }
   })

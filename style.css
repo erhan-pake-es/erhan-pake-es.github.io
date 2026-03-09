@@ -131,9 +131,12 @@ ul li{
     justify-content: center;
     align-items: center;
     padding: 10px;
-    font-size: calc(8rem + 2vw);
+    font-size: clamp(2rem, 10vw, 8rem);
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+    word-break: break-word;
     background-color: whitesmoke;
-    height: 400px;
+    height: 50vh;
 }
 
 #game-buttons{
@@ -166,7 +169,7 @@ ul li{
     font-size: 1.5em;
 }
 
-#reset, #hide{
+#reset{
     font-family: 'Courier New', Courier, monospace;
     font-size: 1.2em;
     margin: 0 20px 0 0;
