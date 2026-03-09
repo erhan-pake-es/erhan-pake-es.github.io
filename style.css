@@ -1,0 +1,180 @@
+body{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+    margin: 0;
+}
+
+button{
+    color: black;
+}
+
+#categories{
+    position: absolute;
+    z-index: 1;
+    background-color: lightgray;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+#category-buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 60%;
+    overflow-y: hidden;
+}
+
+#category-buttons li{
+    display: flex;
+    justify-content: space-between;
+}
+
+h2{
+    font-size: 3em;
+    margin: 10px;
+}
+
+.category{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2rem;
+    color: black;
+    width: 80%;
+}
+
+#customize{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    background-color: lightskyblue;
+    display: none;
+    justify-content:center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#start{
+    width: 15%;
+}
+
+#customize h3{
+    font-size: 2.2em;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin-bottom: 10px;
+}
+
+#customize button{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2em;
+    width: fit-content;
+}
+
+#customize input{
+    font-size: 1.2em;
+}
+
+ul{
+    width: 90%;
+    font-size: 2em;
+    list-style: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+ul li{
+    width: inherit;
+    margin-bottom: 5px ;
+}
+
+.close{
+    background-color: lightcoral;
+    padding: 0 5px;
+    border-radius: 2px;
+    margin-left: 20px;
+    /* display: none; */
+}
+
+#close-edit{
+    position: absolute;
+    top: -10px;
+    left: 0;
+    border: none;
+    background-color: inherit;
+    font-weight: 800;
+    font-size: 50px !important;
+    padding: 0 10px;
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+#custom{
+    background-color: darkgray;
+    color: whitesmoke;
+    font-size: 1.2em;
+}
+
+#game{
+    display: flex;
+    flex-direction: column;
+}
+
+#word{
+    text-align: center;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    font-size: calc(8rem + 2vw);
+    background-color: whitesmoke;
+    height: 400px;
+}
+
+#game-buttons{
+    display: flex;
+    justify-content: space-between;
+    border-top: solid darkgrey 2px;
+}
+
+#game-buttons button{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 2em;
+    width: 30%;
+    padding: 10px 0;
+}
+
+#pass{
+    background-color: gold;
+}
+
+#get{
+    background-color: greenyellow;
+}
+
+#game-info{
+    padding: 10px;
+}
+
+#game-info p:nth-of-type(2){
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1.5em;
+}
+
+#reset, #hide{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2em;
+    margin: 0 20px 0 0;
+    width: 20%;
+    padding: 5px 5px;
+}
+
+#reset{
+    font-weight: 600;
+    background-color: rgb(249, 94, 94);
+}

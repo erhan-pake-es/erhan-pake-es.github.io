@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Heads Up for Class</title>
+</head>
+<body>
+      <div id="categories">
+        <h2>Choose a category:</h2>
+          <ul id="category-buttons">
+            <li><button id="daily1" class="category">Easy</button><button id="daily1-edit" class="edit">edit</button></li>
+            <li><button id="daily2" class="category">Medium</button><button id="daily2-edit" class="edit">edit</button></li>
+            <li><button id="daily3" class="category">Hard</button><button id="daily3-edit" class="edit">edit</button></li>
+            <li><button id="jobs" class="category">Jobs</button><button id="jobs-edit" class="edit">edit</button></li>
+            <li><button id="classroom" class="category">Classroom Items</button><button id="classroom-edit" class="edit">edit</button></li>
+            <li><button id="house" class="category">House Items/Places</button><button id="house-edit" class="edit">edit</button></li>
+            <li><button id="example" class="category">Example</button><button id="example-edit" class="edit">edit</button></li>
+
+          </ul>
+
+        <button id="custom">CUSTOM</button>
+      </div>
+
+      <div id="customize">
+        <button id="close-edit">x</button>
+        <h3 id="c-title"></h3>
+        <div>
+          <input type="text" name="add" id="add">
+          <button id="add-button">Enter</button>
+        </div>
+        <button id="start">Start with Custom</button>
+      </div>
+
+
+      <div id="game">
+        <div id="word"></div>
+        <div id="game-buttons">
+          <button id="pass">PASS</button>
+          <button id="get">GET</button>
+        </div>
+        <div id="game-info">
+          <div>
+            <p>
+              Cards left: <span id="cards"></span>
+            </p>
+            <p>
+              Score: <span id="score"></span>
+            </p>
+          </div>
+
+          <div>
+            <button id="reset">RESET</button>
+            <button id="hide">HIDE</button>
+          </div>
+        </div>
+      </div>
+
+      <script src="app.js"></script>
+</body>
+</html>
