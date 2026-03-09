@@ -2,7 +2,6 @@ const wordCategories = {
     daily1: [
       "Boba Tea / 珍珠奶茶 (zhēnzhū nǎichá)",
       "Airplane / 飛機 (fēi jī)",
-      "Sleep / 睡覺 (shuì jiào)",
       "Mobile Phone / 手機 (shǒu jī)",
       "Umbrella / 雨傘 (yǔ sǎn)",
       "Keys / 鑰匙 (yào shi)",
@@ -452,3 +451,4 @@ const wordCategories = {
       e.target.parentNode.remove()
     }
   })
+
