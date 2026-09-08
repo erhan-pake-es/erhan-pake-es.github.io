@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Language Wishlist • NSYSU Language Exchange Club (語言願望文字雲)</title>
+    <!-- Modern Typography from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700;900&family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="wordcloud-body">
+    <div class="wordcloud-app-container">
+        <!-- TOP APP BAR / NAVIGATION -->
+        <header class="wordcloud-header">
+            <div class="header-left">
+                <span class="brand-badge">🗣️ NSYSU LEC</span>
+                <span class="header-page-tag">Interactive Booth Poll</span>
+            </div>
+            <div class="header-nav-actions">
+                <button id="download-btn" class="btn-download-top" title="Export wishlist data as .txt file">
+                    <span class="btn-icon">📥</span>
+                    <span class="btn-text">Download Info (.txt)</span>
+                </button>
+                <a href="about.html" class="nav-chip-link" title="About Our Club">
+                    <span>🌟 About Club</span>
+                </a>
+                <a href="index.html" class="nav-chip-link" title="Play Heads Up Game">
+                    <span>🎮 Heads Up Game</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- MAIN SURVEY & WORD CLOUD HERO -->
+        <main class="wordcloud-main">
+            <div class="wordcloud-title-card">
+                <div class="cloud-badge-row">
+                    <span class="cloud-badge">✨ Live Audience Word Cloud • 現場即時文字雲</span>
+                </div>
+                <h1 class="cloud-main-heading">
+                    What language do you want to learn?
+                    <span class="cloud-main-heading-cn">你想學甚麼語言？</span>
+                </h1>
+                <p class="cloud-subheading">
+                    Type a language below to add your vote! Hover or tap on any word to see total counts.
+                </p>
+
+                <!-- Stats Counter Bar -->
+                <div class="cloud-stats-bar">
+                    <div class="stat-pill">
+                        <span class="stat-label">Total Votes:</span>
+                        <strong id="total-votes-count">0</strong>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="stat-label">Languages:</span>
+                        <strong id="unique-languages-count">0</strong>
+                    </div>
+                    <button id="clear-all-btn" class="btn-stat-action" title="Clear all words (Reset cloud)">
+                        🗑️ Reset
+                    </button>
+                </div>
+            </div>
+
+            <!-- CENTRAL WORD CLOUD DISPLAY CONTAINER -->
+            <div class="wordcloud-viewport">
+                <div id="wordcloud-container" class="wordcloud-container">
+                    <!-- Dynamic Word Items will be populated here via wordcloud.js -->
+                    <div class="cloud-empty-state" id="cloud-empty-state">
+                        <div class="empty-icon">☁️💬</div>
+                        <h3>The Word Cloud is Empty!</h3>
+                        <p>Be the first to submit a language using the input bar below!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Tap Suggestions for Booth Visitors -->
+            <div class="quick-suggestions-wrap">
+                <span class="suggestions-label">⚡ Quick Suggest:</span>
+                <div class="suggestion-chips" id="suggestion-chips">
+                    <button class="chip-btn" data-lang="Japanese">🇯🇵 Japanese / 日語</button>
+                    <button class="chip-btn" data-lang="Spanish">🇪🇸 Spanish / 西班牙語</button>
+                    <button class="chip-btn" data-lang="Korean">🇰🇷 Korean / 韓語</button>
+                    <button class="chip-btn" data-lang="German">🇩🇪 German / 德語</button>
+                    <button class="chip-btn" data-lang="French">🇫🇷 French / 法語</button>
+                    <button class="chip-btn" data-lang="Vietnamese">🇻🇳 Vietnamese / 越南語</button>
+                    <button class="chip-btn" data-lang="Mandarin">🇹🇼 Mandarin / 中文</button>
+                    <button class="chip-btn" data-lang="Indonesian">🇮🇩 Indonesian / 印尼語</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- PINNED BOTTOM INPUT BAR -->
+        <footer class="wordcloud-input-footer">
+            <div class="input-bar-inner">
+                <form id="word-form" class="word-input-form" autocomplete="off">
+                    <div class="input-field-wrapper">
+                        <span class="input-icon">🌐</span>
+                        <input 
+                            type="text" 
+                            id="language-input" 
+                            name="language"
+                            placeholder="Type a language (e.g. Japanese, Spanish, 德語...)" 
+                            maxlength="30"
+                            required
+                            autofocus
+                        >
+                        <button type="button" id="clear-input-btn" class="btn-input-clear" aria-label="Clear input">✕</button>
+                    </div>
+                    <button type="submit" id="submit-word-btn" class="btn-submit-word">
+                        <span class="btn-submit-label">Submit / 送出</span>
+                        <span class="btn-submit-icon">🚀</span>
+                    </button>
+                </form>
+            </div>
+        </footer>
+    </div>
+
+    <!-- SCRIPT -->
+    <script src="wordcloud.js"></script>
+</body>
+</html>

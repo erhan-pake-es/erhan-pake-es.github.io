@@ -2,55 +2,293 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NSYSU Heads Up! • Language Exchange Club</title>
+    <!-- Modern Typography from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700;900&family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>Heads Up for Class</title>
 </head>
 <body>
-      <div id="categories">
-        <h2>Choose a category:</h2>
-          <ul id="category-buttons">
-            <li><button id="daily1" class="category">Easy</button><button id="daily1-edit" class="edit">edit</button></li>
-            <li><button id="daily2" class="category">Medium</button><button id="daily2-edit" class="edit">edit</button></li>
-            <li><button id="daily3" class="category">Hard</button><button id="daily3-edit" class="edit">edit</button></li>
-          </ul>
+    <div class="app-container">
+        <!-- TOP APP BAR -->
+        <header class="app-header">
+            <div class="brand">
+                <span class="brand-badge">🗣️ NSYSU LEC</span>
+                <h1 class="app-title">Heads Up! 雙語猜猜看</h1>
+            </div>
+            <div class="header-controls">
+                <button id="sound-toggle" class="icon-btn" title="Toggle Sound" aria-label="Toggle Sound">🔊</button>
+            </div>
+        </header>
 
-        <button id="custom">CUSTOM</button>
-      </div>
+        <!-- MAIN MENU / CATEGORIES SCREEN -->
+        <main id="categories" class="screen screen-active">
+            <div class="menu-intro">
+                <h2 class="section-title">Select Difficulty Level</h2>
+                <p class="section-subtitle">Choose a level to practice English & Chinese vocabulary together!</p>
+            </div>
 
-      <div id="customize">
-        <button id="close-edit">x</button>
-        <h3 id="c-title"></h3>
-        <div>
-          <input type="text" name="add" id="add">
-          <button id="add-button">Enter</button>
+            <div id="category-grid" class="category-grid">
+                <!-- Level 1: Absolute Beginner -->
+                <div class="level-card level-absolute-beginner" data-level="absolute_beginner">
+                    <div class="level-badge">Level 1 • Quick Prep</div>
+                    <div class="level-content">
+                        <div class="level-icon">🙋‍♂️</div>
+                        <div class="level-info">
+                            <h3 class="level-title">Absolute Beginner</h3>
+                            <p class="level-desc">Pronouns & "To Be" verbs (I, You, She, 是, am, is, are)</p>
+                            <span class="level-tag">✨ Includes Pre-Game Review</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-play category" id="btn-absolute_beginner">Play</button>
+                        <button class="btn-edit edit" id="edit-absolute_beginner" title="View or Edit words">✏️</button>
+                    </div>
+                </div>
+
+                <!-- Level 2: Very Easy -->
+                <div class="level-card level-very-easy" data-level="very_easy">
+                    <div class="level-badge">Level 2 • A0 Basics</div>
+                    <div class="level-content">
+                        <div class="level-icon">👋</div>
+                        <div class="level-info">
+                            <h3 class="level-title">Very Easy</h3>
+                            <p class="level-desc">Essential greetings, numbers 1-3, colors & manners</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-play category" id="btn-very_easy">Play</button>
+                        <button class="btn-edit edit" id="edit-very_easy" title="View or Edit words">✏️</button>
+                    </div>
+                </div>
+
+                <!-- Level 3: Easy -->
+                <div class="level-card level-easy" data-level="easy">
+                    <div class="level-badge">Level 3 • Daily Items</div>
+                    <div class="level-content">
+                        <div class="level-icon">🧋</div>
+                        <div class="level-info">
+                            <h3 class="level-title">Easy</h3>
+                            <p class="level-desc">Boba tea, airplane, backpack, umbrella & everyday campus items</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-play category" id="btn-easy">Play</button>
+                        <button class="btn-edit edit" id="edit-easy" title="View or Edit words">✏️</button>
+                    </div>
+                </div>
+
+                <!-- Level 4: Medium -->
+                <div class="level-card level-medium" data-level="medium">
+                    <div class="level-badge">Level 4 • Intermediate</div>
+                    <div class="level-content">
+                        <div class="level-icon">🎧</div>
+                        <div class="level-info">
+                            <h3 class="level-title">Medium</h3>
+                            <p class="level-desc">Night market, convenience store, passport, helmet & electronics</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-play category" id="btn-medium">Play</button>
+                        <button class="btn-edit edit" id="edit-medium" title="View or Edit words">✏️</button>
+                    </div>
+                </div>
+
+                <!-- Level 5: Hard -->
+                <div class="level-card level-hard" data-level="hard">
+                    <div class="level-badge">Level 5 • Advanced</div>
+                    <div class="level-content">
+                        <div class="level-icon">🔋</div>
+                        <div class="level-info">
+                            <h3 class="level-title">Hard</h3>
+                            <p class="level-desc">Dehumidifier, electric mosquito swatter, power bank & gadgets</p>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-play category" id="btn-hard">Play</button>
+                        <button class="btn-edit edit" id="edit-hard" title="View or Edit words">✏️</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Action Section: About Club, Word Cloud & Custom Deck -->
+            <div class="menu-action-section">
+                <a id="about-btn" href="about.html" class="btn-about" title="Learn more about our club">
+                    <div class="btn-about-content">
+                        <span class="btn-about-icon">🌟</span>
+                        <div class="btn-about-text">
+                            <span class="btn-about-title">About Our Club / 關於我們</span>
+                            <span class="btn-about-subtitle">Weekly Sessions • Membership & Perks</span>
+                        </div>
+                    </div>
+                    <span class="btn-about-arrow">→</span>
+                </a>
+
+                <a id="wordcloud-btn" href="wordcloud.html" class="btn-about" style="border-color: #C1DFDA; background: linear-gradient(135deg, #F0F9F8 0%, #E6F4F1 100%);" title="Interactive Language Wishlist Word Cloud">
+                    <div class="btn-about-content">
+                        <span class="btn-about-icon" style="box-shadow: 0 2px 6px rgba(42, 157, 143, 0.15);">☁️</span>
+                        <div class="btn-about-text">
+                            <span class="btn-about-title" style="color: #264653;">Language Wishlist / 願望文字雲</span>
+                            <span class="btn-about-subtitle">What language do you want to learn?</span>
+                        </div>
+                    </div>
+                    <span class="btn-about-arrow" style="color: #264653;">→</span>
+                </a>
+
+                <button id="custom" class="btn-custom">
+                    <span class="custom-icon">⚙️</span>
+                    <span>Create / Play Custom Word Deck</span>
+                </button>
+            </div>
+        </main>
+
+        <!-- PRE-GAME REVIEW SCREEN (FOR ABSOLUTE BEGINNER) -->
+        <section id="pregame-screen" class="screen" aria-hidden="true">
+            <div class="pregame-header">
+                <button id="pregame-back" class="btn-back">← Back to Levels</button>
+                <div class="pregame-badge">Level 1 Study Prep</div>
+                <h2 class="pregame-title">Absolute Beginner Review</h2>
+                <p class="pregame-subtitle">Take a moment to memorize these foundational pronouns and "to be" verbs!</p>
+            </div>
+
+            <!-- Target Goal Banner -->
+            <div class="learning-goal-card">
+                <div class="goal-icon">🎯</div>
+                <div class="goal-text">
+                    <strong>Booth Goal:</strong> After this round, you'll be able to introduce yourself:
+                    <div class="goal-examples">
+                        <span class="formula-chip">I am [Name] ↔ 我是 [Name] <small>(wǒ shì...)</small></span>
+                        <span class="formula-chip">You are [Name] ↔ 你是 [Name] <small>(nǐ shì...)</small></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flashcard Grid -->
+            <div id="pregame-vocab-grid" class="vocab-grid">
+                <!-- Dynamically populated via app.js -->
+            </div>
+
+            <div class="pregame-actions">
+                <button id="pregame-start-btn" class="btn-start-game">
+                    <span>🚀 I'm Ready! Start Game</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ACTIVE GAMEPLAY SCREEN -->
+        <section id="game" class="screen" aria-hidden="true">
+            <!-- Game Top Status Bar -->
+            <div id="game-status-bar" class="game-status-bar">
+                <button id="exit-game" class="btn-icon-exit" title="Exit to Menu">← Exit</button>
+                <div class="status-center">
+                    <span id="current-level-badge" class="level-indicator">Level</span>
+                    <div class="status-pills">
+                        <span class="pill pill-cards">Cards: <strong id="cards">0</strong></span>
+                        <span class="pill pill-score">Score: <strong id="score">0</strong></span>
+                    </div>
+                </div>
+                <button id="reset" class="btn-reset" title="Restart Deck">↺ Reset</button>
+            </div>
+
+            <!-- Main Word Card Area -->
+            <div class="game-card-wrapper">
+                <div id="word" class="active-word-card">
+                    <div class="word-placeholder">Get Ready...</div>
+                </div>
+            </div>
+
+            <!-- Keyboard Help for Facilitator -->
+            <div class="keyboard-hint">
+                <span>Keyboard: <kbd>←</kbd> / <kbd>P</kbd> Pass &nbsp;•&nbsp; <kbd>→</kbd> / <kbd>Space</kbd> / <kbd>G</kbd> Get</span>
+            </div>
+
+            <!-- MASSIVE MOBILE ACTION BUTTONS -->
+            <div id="game-buttons" class="game-action-buttons">
+                <button id="pass" class="action-btn btn-pass" aria-label="Pass Word">
+                    <span class="btn-label">PASS</span>
+                    <span class="btn-subtext">Skip (0 pts)</span>
+                </button>
+                <button id="get" class="action-btn btn-get" aria-label="Got Word Correct">
+                    <span class="btn-label">GET!</span>
+                    <span class="btn-subtext">Correct (+1 pt)</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- GAME OVER / RESULTS MODAL -->
+        <div id="game-over-modal" class="modal-overlay" aria-hidden="true">
+            <div class="modal-dialog celebration-dialog">
+                <div class="celebration-emoji">🎉</div>
+                <h2 class="modal-title">Round Complete!</h2>
+                <p class="modal-subtitle">Great teamwork practicing English & Chinese!</p>
+                
+                <div class="score-summary-card">
+                    <div class="summary-item">
+                        <span class="summary-label">Final Score</span>
+                        <span id="final-score" class="summary-value">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Difficulty</span>
+                        <span id="final-level" class="summary-badge">Level</span>
+                    </div>
+                </div>
+
+                <!-- Community Social CTA Section -->
+                <div class="modal-community-section">
+                    <span class="community-heading">Join our community! 加入我們！</span>
+                    <div class="modal-social-buttons">
+                        <a href="https://www.instagram.com/nsysu_lec" target="_blank" rel="noopener noreferrer" class="modal-social-btn btn-modal-instagram" aria-label="Follow NSYSU LEC on Instagram">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="https://line.me/R/ti/g/VmxLKr2CCt" target="_blank" rel="noopener noreferrer" class="modal-social-btn btn-modal-line" aria-label="Join NSYSU LEC on LINE Group">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+                            </svg>
+                            <span>LINE Group</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button id="play-again-btn" class="btn-modal-primary">🔄 Play Level Again</button>
+                    <button id="return-menu-btn" class="btn-modal-secondary">🏠 Back to Levels</button>
+                </div>
+            </div>
         </div>
-        <button id="start">Start with Custom</button>
-      </div>
 
+        <!-- CUSTOMIZE & WORD EDIT MODAL -->
+        <div id="customize" class="modal-overlay" aria-hidden="true">
+            <div class="modal-dialog edit-dialog">
+                <div class="modal-header">
+                    <h3 id="c-title" class="modal-title">Customize Words</h3>
+                    <button id="close-edit" class="btn-modal-close" aria-label="Close dialog">✕</button>
+                </div>
 
-      <div id="game">
-        <div id="word"></div>
-        <div id="game-buttons">
-          <button id="pass">PASS</button>
-          <button id="get">GET</button>
+                <div class="add-word-bar">
+                    <input type="text" name="add" id="add" placeholder="e.g. Bubble Tea / 珍珠奶茶 (zhēn zhū nǎi chá)" autocomplete="off">
+                    <button id="add-button" class="btn-add">Add Word</button>
+                </div>
+                <p class="edit-hint">Format tip: <code>English / 中文 (pinyin)</code> with optional emoji.</p>
+
+                <div class="words-list-wrapper">
+                    <!-- Dynamic list container -->
+                    <div id="edit-list-container"></div>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="start" class="btn-modal-primary">Start with this Deck</button>
+                </div>
+            </div>
         </div>
-        <div id="game-info">
-          <div>
-            <p>
-              Cards left: <span id="cards"></span>
-            </p>
-            <p>
-              Score: <span id="score"></span>
-            </p>
-          </div>
+    </div>
 
-          <div>
-            <button id="reset">RESET</button>
-          </div>
-        </div>
-      </div>
-
-      <script src="app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
